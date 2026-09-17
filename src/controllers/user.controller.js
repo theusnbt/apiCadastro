@@ -37,7 +37,23 @@ class UserController{
     async update(req, res){
         try{
             const id = req.paramas.id;
-            const user = await UserModel.findByIdAndUpdate(id, req.body, { returnDocument: "after" });
+            const user = await UserModel.findByIdAndUpdate(id);
+
+            res.status(500).json({
+                message:"Usuario atualizado"
+            });
+        }
+        catch(error){
+            console.log(error);
+            res.status(500).json({
+                message: "Internal error"
+            });
+        }
+    }
+    async delete(req, res){
+        try{
+            const id = req.paramas.id;
+            const user = await UserModel.findByIdAndDelete(id, req.body, { returnDocument: "after" });
 
             res.status(500).json({
                 message:"Usuario atualizado"
