@@ -1,4 +1,5 @@
 import app from "../../app.js";
+import UserModel from "../model/user.model.js"
 
 class UserController{
 
@@ -24,6 +25,22 @@ class UserController{
 
             res.status(200).json({
                 message:"Usuario lido com sucesso"
+            });
+        }
+        catch(error){
+            console.log(error);
+            res.status(500).json({
+                message: "Internal error"
+            });
+        }
+    }
+    async update(req, res){
+        try{
+            const id = req.paramas.id;
+            const user = await UserModel.findByIdAndUpdate(id, req.body, { returnDocument: "after" });
+
+            res.status(500).json({
+                message:"Usuario atualizado"
             });
         }
         catch(error){
