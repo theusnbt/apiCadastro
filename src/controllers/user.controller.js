@@ -1,4 +1,4 @@
-import app from "../../app.js";
+import app from "../app.js";
 import UserModel from "../model/user.model.js"
 
 class UserController{
